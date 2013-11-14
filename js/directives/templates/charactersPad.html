@@ -14,9 +14,14 @@
 	}
 	.pad-character.ng-hide-add.ng-hide-add-active {
 		opacity: 0;
-		background: #FFD700;
+		background: red;
+	}
+
+	button.corrected {	
+		background: green !important;
 	}
 </style>
-<div class="col-md-2" ng-repeat="character in character_buttons" class="dn-fade-right" >
-    <button class="btn btn-default btn-lg btn-block pad-character" ng-hide="character.is_selected" ng-click="guess(character)">{{character.character}}</button> 
+
+<div class="col-md-2" ng-repeat="character in character_buttons">
+    <button class="btn btn-default btn-lg btn-block pad-character" ng-class="{'corrected': character.guessed}" ng-hide="character.selected" ng-click="guess(character)">{{character.character}}</button> 
 </div>
