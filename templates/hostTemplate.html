@@ -1,22 +1,29 @@
-<div class="row">
-    <h3> {{game_information}} </h3>
-    </div>
-    <div class="row">
-      <h1>Speel het raad het woord spel </h1>
-      <div class="col-md-6">
-       <input ng-disabled="ready_to_guess" ng-model="user_input" class="form-control input-lg game-character" type="text" placeholder="Type een woord" ng-maxlength="10" maxlength="10"  check-allowed-characters>
-      </div>
-      <div class="col-md-3">
-        <strong>Score: </strong> {{score}}
-      </div>
-
-      <div class="col-md-6">
-       <button  ng-show="game_characters.length > 3" ng-disabled="ready_to_guess" ng-click="startGame($event)" type="submit" class="btn btn-primary btn-lg"  >Raad een ander raden!</button>
-      </div>
+<div class="row" ng-show="game_completed">
+  <h1>De speler heeft het woord geraden!</h1>
+ <button type="button" class="btn btn-primary" ng-click="resetGame()">Speel opnieuw</button>
 </div>
 
-<div class="row">
-    <div ng-repeat="character in game_characters">
-      <div class="col-md-1 character-block" ng-class="{'corrected': character.guessed}"> {{character.character}} </div>
+<div ng-hide="game_completed">
+  <div class="row">
+      <h1> SessionId: {{game.hostSessionId}} </h1>
+  </div>
+  <div class="row">
+    <h2>Speel het raad het woord spel </h2>
+    <div class="col-md-6">
+     <input ng-disabled="ready_to_guess" ng-model="user_input" class="form-control input-lg game-character" type="text" placeholder="Type een woord" ng-maxlength="10" maxlength="10"  check-allowed-characters>
     </div>
+    <div class="col-md-6">
+     <button  ng-show="game_characters.length > 3" ng-disabled="ready_to_guess" ng-click="startGame($event)" type="submit" class="btn btn-primary btn-lg">Raad een ander raden!</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div  ng-repeat="character in game_characters" class="col-md-1 character-block" ng-class="{'corrected': character.guessed}"> {{character.character}} </div>
+    
+  </div>
 </div>
+
+<div class="row" ng-show="ready_to_guess" >
+    <a href="{{play_url}}" target="_BLANK">{{play_url}}</a>
+</div>
+

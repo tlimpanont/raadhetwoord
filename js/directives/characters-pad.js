@@ -7,11 +7,11 @@ app.directive("charactersPad", function() {
 
 app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad) {
 
-
 	// when we ready to play the game, it's possible to use the keyboard
 	$scope.$watch("ready_to_guess", function(newValue, oldValue){
 		if(newValue)
 		{
+			$scope.guess_count = 0; $scope.selected_characters = new Array();
 			if(game.keyboard_allowed) 
 			{
 				angular.element(window).on("keypress", $scope.keypressHandler);
@@ -20,7 +20,6 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
 	});
 
 	$scope.keypressHandler = function(e) {
-		console.log(e.type);
 		// which character do we pressed on the keyboard
 		var character = (String.fromCharCode(e.which));
 		// only the allowed characters can be presetend on the front-end
@@ -35,13 +34,15 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
 	
 	//try to make a guess based on one single character
 	$scope.guess = function(padButtonCharacter) {
-		
-
+		$scope.guess_count++;		
 		// how many characters can we find that has a match
 		var current_guess_objects = _.where($scope.game_characters, 
 		{
 			character: padButtonCharacter.character.toLowerCase()
 		});
+		
+			
+
 		// we have one or more match
 		if(current_guess_objects.length > 0) 
 		{
@@ -58,11 +59,14 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
   				return character.guessed;
 			}).true
 			
-			// we guessed all characters correctly guessed
+			
+
+			
+			// we guessed all characters correctly
 			if(corrected_game_characters_count == $scope.game_characters.length)
 			{
-				$scope.character_buttons = gamePad.createCharacterButtons();
 				$scope.game_completed = true;
+				$scope.character_buttons = gamePad.createCharacterButtons();
 				angular.element(window).off("keypress", $scope.keypressHandler);
 			}
 			else
@@ -74,11 +78,11 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
 		// the character can not been matched
 		else
 		{
-			
 			padButtonCharacter.guessed = false;
 			console.log(padButtonCharacter.character + ": " + "bestaat niet!. Niet Goed geraden!");
 		}
 		// we can not choose the character anymore
 		padButtonCharacter.selected = true;
+		$scope.selected_characters.push(padButtonCharacter);
 	}
 }); // end controller

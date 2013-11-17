@@ -1,3 +1,3 @@
-app.controller("mainCtrl", function($scope, gameService) {
+app.controller("mainCtrl", function($scope) {
 	
 });

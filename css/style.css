@@ -1,0 +1,16 @@
+ .character-block { font-size: 3em; text-transform: uppercase; font-weight: bold; text-align: center; background: #ccc; margin-right: 15px;}
+.game-character { text-transform: uppercase; }
+.pad-character { text-transform: uppercase; font-size: 2.2em; font-weight: bold; text-align: center;}
+.row { margin: 15px 0;}
+.character-block.corrected-add,
+.character-block.corrected-remove {
+  transition: 0.5s linear all;
+}
+.character-block.corrected-remove,
+.character-block.corrected-remove.corrected-remove-active {
+	background: grey; color: black;
+}
+.character-block.corrected,
+.character-block.corrected-add.corrected-add-active {
+	background: green; color: white;
+}

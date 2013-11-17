@@ -1,14 +1,18 @@
+<div ng-show="game_completed">
+	<h1 style="text-transform: uppercase;">{{word}}</h1>
+	<h3>Aantal pogingen: {{guess_count}}</h3>
+	<p>Gefeliciteerd je hebt het woord  geraden</p>
+	<p>Je kunt verder spelen nadat een ander speler jou een nieuw woord heeft gegeven</p>
+</div>
+<div ng-hide="game_completed">
+	<div class="row">
+		 <div  ng-repeat="character in game_characters" class="col-md-1 character-block">&nbsp;</div>
+		<div class="col-md-12" ng-hide="ready_to_guess">
+			<div class="alert alert-success">Speler is bezig met het verzinnen van een woord. Een ogenblik geduld a.u.b.</div>
+		</div>
+	</div>
+	<div class="row" ng-show="ready_to_guess" >
+		<div characters-pad></div>
+	</div>
+</div>
 
-<div class="row">
-	<div class="col-md-5">
-		<h1>Wacht tot dat iemand jouw een woord geef!</h1>
-	</div>
-	<div class="col-md-3">
-		<strong>Score: </strong> {{score}}
-	</div>
-</div>
-<div class="row" ng-show="ready_to_guess" >
-   <div characters-pad></div>
-</div>
- 
-<div bootstrap-modal template="js/directives/templates/endGameModal.html"></div>

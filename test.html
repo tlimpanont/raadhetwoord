@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-controller="mainCtrl">
+
+	{{date}}
+	<script type="text/javascript" src="js/libs/head.min.js"></script>
+	<script type="text/javascript">
+		var scripts = [
+			{"mordernizr": "js/libs/modernizr-2.6.2.min.js"},
+			{"prefixfree" : "js/libs/prefixfree.min.js" },
+			{"underscore" : "js/libs/underscore.js"},
+			{"jquery": "js/libs/jquery-1.9.1.js"},
+			{"jquery_ui": "js/libs/jquery-ui.js"},
+			{"angular": "js/libs/angular.min.js"},
+			{"angular_route": "js/libs/angular-route.min.js"},
+			{"firebase" : "js/libs/firebase.js"},
+			{"angular_fire": "js/libs/angularfire.min.js"},
+			{"bootstrap" : "js/libs/bootstrap.min.js"},
+			"js/app.js",
+			"js/controllers/mainCtrl.js",
+			"js/services/gamePad.js",
+			"js/directives/check-allowed-characters.js",
+			"js/directives/characters-pad.js",
+			"js/directives/bootstrap-modal.js"
+		];
+
+		head.load(scripts, function() {
+			 var app = angular.module("app", ['ngRoute']);
+			 
+			 app.controller("mainCtrl", function($scope) {
+			 	$scope.date = new Date;
+			 });
+			 app.config(["$routeProvider", function($routeProvider) {
+			 	console.log($routeProvider);
+			 }]);
+		});
+
+
+		head.ready("jquery", function() {
+			jQuery("body").css("background", "black");
+		});
+
+
+	</script>
+</body>
+</html>
