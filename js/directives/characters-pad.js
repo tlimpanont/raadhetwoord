@@ -5,13 +5,27 @@ app.directive("charactersPad", function() {
 	} // end returning directive
 });
 
-app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad) {
+
+app.service("characterChecker", function() {
+	return {
+		getCorrectIndexes: function(game_characters) {
+			var indexes = new Array();
+			_.each(game_characters, function(character, index, list) {
+				if(character.guessed == true)
+					indexes.push(index)
+			});
+
+			return indexes;
+		}
+	}
+});
+
+app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad, characterChecker) {
 
 	// when we ready to play the game, it's possible to use the keyboard
 	$scope.$watch("ready_to_guess", function(newValue, oldValue){
 		if(newValue)
 		{
-			$scope.guess_count = 0; $scope.selected_characters = new Array();
 			if(game.keyboard_allowed) 
 			{
 				angular.element(window).on("keypress", $scope.keypressHandler);
@@ -40,7 +54,6 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
 		{
 			character: padButtonCharacter.character.toLowerCase()
 		});
-		
 			
 
 		// we have one or more match
@@ -83,6 +96,5 @@ app.controller("charactersPadCtrl", function($scope, game, gameService, gamePad)
 		}
 		// we can not choose the character anymore
 		padButtonCharacter.selected = true;
-		$scope.selected_characters.push(padButtonCharacter);
 	}
 }); // end controller

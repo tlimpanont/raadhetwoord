@@ -17,6 +17,8 @@ app.factory("gameService", function($rootScope, game, gamePad, angularFire) {
 			angularFire(sessionRef.child("allowed_characters"), $scope, 'allowed_characters');	
 			angularFire(sessionRef.child("game_completed"), $scope, 'game_completed');
 			angularFire(sessionRef.child("word"), $scope, 'word');
+			angularFire(sessionRef.child("guess_count"), $scope, 'guess_count');
+			angularFire(sessionRef.child("selected_characters"), $scope, 'selected_characters');
 		}
 	}
 });

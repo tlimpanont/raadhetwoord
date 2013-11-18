@@ -1,5 +1,5 @@
 <style>
-	.pad-character.ng-hide-add,
+/*	.pad-character.ng-hide-add,
 	.pad-character.ng-hide-remove {
 		transition:1s linear all;
 	}
@@ -15,12 +15,16 @@
 	.pad-character.ng-hide-add.ng-hide-add-active {
 		opacity: 0;
 		background: red;
-	}
+	}*/
 	button.corrected {	
 		background: green !important;
 	}
+
+	button.incorrected {	
+		background: red !important;
+	}
 </style>
 
-<div class="col-md-2" ng-repeat="character in character_buttons">
-    <button class="btn btn-default btn-lg btn-block pad-character" ng-class="{'corrected': character.guessed}" ng-hide="character.selected" ng-click="guess(character)">{{character.character}}</button> 
+<div class="col-xs-2" ng-repeat="character in character_buttons">
+    <button class="btn btn-default btn-lg btn-block pad-character" ng-class="{'corrected': character.guessed, 'incorrected': (!character.guessed && character.selected) }" ng-disabled="(character.selected)" ng-click="guess(character)">{{character.character}}</button> 
 </div>

@@ -9,16 +9,16 @@
   </div>
   <div class="row">
     <h2>Speel het raad het woord spel </h2>
-    <div class="col-md-6">
-     <input ng-disabled="ready_to_guess" ng-model="user_input" class="form-control input-lg game-character" type="text" placeholder="Type een woord" ng-maxlength="10" maxlength="10"  check-allowed-characters>
+    <div class="col-xs-9">
+     <input ng-disabled="ready_to_guess" ng-model="user_input" class="form-control input-lg game-character" type="text" placeholder="Type een woord (max. 10 karakters)" ng-maxlength="10" maxlength="10"  check-allowed-characters>
     </div>
-    <div class="col-md-6">
-     <button  ng-show="game_characters.length > 3" ng-disabled="ready_to_guess" ng-click="startGame($event)" type="submit" class="btn btn-primary btn-lg">Raad een ander raden!</button>
+    <div class="col-xs-3">
+     <button  ng-show="game_characters.length > 3" ng-disabled="ready_to_guess" ng-click="startGame($event)" type="submit" class="btn btn-primary btn-block btn-lg">Spelen</button>
     </div>
   </div>
 
   <div class="row">
-    <div  ng-repeat="character in game_characters" class="col-md-1 character-block" ng-class="{'corrected': character.guessed}"> {{character.character}} </div>
+    <div  ng-repeat="character in game_characters" class="col-xs-1 character-block" ng-class="{'corrected': character.guessed}"> {{character.character}} </div>
     
   </div>
 </div>
