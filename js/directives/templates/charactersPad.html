@@ -24,7 +24,6 @@
 		background: red !important;
 	}
 </style>
-
 <div class="col-xs-2" ng-repeat="character in character_buttons">
-    <button class="btn btn-default btn-lg btn-block pad-character" ng-class="{'corrected': character.guessed, 'incorrected': (!character.guessed && character.selected) }" ng-disabled="(character.selected)" ng-click="guess(character)">{{character.character}}</button> 
+    <button class="btn btn-default btn-lg btn-block pad-character" ng-class="{'corrected': character.guessed, 'incorrected': (!character.guessed && character.selected) }" ng-disabled="(character.selected || is_host) " ng-click="guess(character)">{{character.character}}</button> 
 </div>

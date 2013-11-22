@@ -19,11 +19,19 @@
 
   <div class="row">
     <div  ng-repeat="character in game_characters" class="col-xs-1 character-block" ng-class="{'corrected': character.guessed}"> {{character.character}} </div>
-    
   </div>
+  
+    
 </div>
 
 <div class="row" ng-show="ready_to_guess" >
     <a href="{{play_url}}" target="_BLANK">{{play_url}}</a>
 </div>
+
+<div class="row" ng-show="ready_to_guess">
+	<h3>De gekozen letters van de speler</h3>
+   <div characters-pad ctrl="hostCharactersPadCtrl"></div>
+</div>
+
+
 
