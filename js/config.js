@@ -12,6 +12,8 @@
 		{"firebase_simple_login" : "js/libs/firebase-simple-login.js"},
 		{"angularfire": "js/libs/angularfire.js"},
 		{"bootstrap" : "js/libs/bootstrap.min.js"},
+		{"paperjs" : "js/libs/paper.js"},
+		{"sketchjs" : "js/libs/sketch.min.js"},
 		"js/app.js",
 		"js/controllers/hostCtrl.js",
 		"js/controllers/playerCtrl.js",
@@ -20,7 +22,8 @@
 		"js/services/gamePad.js",
 		"js/services/gameService.js",
 		"js/directives/check-allowed-characters.js",
-		"js/directives/characters-pad.js"
+		"js/directives/characters-pad.js",
+		"js/directives/drawing-canvas.js"
 	];
 
 	app = {};

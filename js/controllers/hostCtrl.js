@@ -2,8 +2,25 @@ app.controller('hostCtrl', function($scope, $timeout, game, gamePad, gameService
 	gameService.destroySession();
 	gameService.setUpSession(game.hostSessionId, $scope);
 
+	jQuery("#drawingModal").modal({
+	 	keyboard: false,
+	 	backdrop: "static",
+	 	show: false
+	 });
+
+	$scope.saveDataURL = function() {
+		$scope.session.drawing_data_url = gameService.getCanvasDataURL(jQuery('#drawingCanvas').get(0)); 
+		jQuery("#drawingModal").modal("hide");
+		$scope.session.wait_for_drawing = false;
+	}
+
+	$scope.openModal = function() {	
+		 jQuery("#drawingModal").modal("show");
+	}
 
 	$scope.resetGame = function() {
+		$scope.session.session_id =  game.hostSessionId;
+		$scope.session.wait_for_approval_character = null;
 		$scope.session.allowed_characters = game.allowed_characters;
 		$scope.session.ready_to_guess = false;
 		$scope.session.character_buttons = gamePad.createCharacterButtons();
@@ -16,7 +33,7 @@ app.controller('hostCtrl', function($scope, $timeout, game, gamePad, gameService
 
 	$scope.startGame = function(event) {
 		event.currentTarget.blur();
-		$scope.session.ready_to_guess =  true;
+		$scope.session.ready_to_guess = true;
 	}
 	
 	$scope.play_url = $location.$$absUrl.replace(/host$/g, "speel/"+game.hostSessionId);
@@ -28,6 +45,20 @@ app.controller('hostCtrl', function($scope, $timeout, game, gamePad, gameService
 			var character = gamePad.createGameCharacters(newValue);
 			$scope.session.game_characters = character;  
 			$scope.word = newValue;
+		}
+	});
+
+	$scope.$watch("wait_for_approval_character", function(newValue, oldValue) {
+		if(newValue != undefined)
+		{
+			// $scope.openModal();
+		}
+	});
+
+	$scope.$watch("wait_for_drawing", function(newValue, oldValue) {
+		if(newValue)
+		{
+			$scope.openModal();
 		}
 	});
 });

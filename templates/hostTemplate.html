@@ -34,4 +34,25 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="drawingModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">De speler heeft een verkeerde letter gekozen</h1>
+      </div>
+      <div class="modal-body">
+        <h3>Teken hieronder een element van een Galg poppetje</h3>
+        <div drawing-canvas writable="true"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click='saveDataURL()'>Verzenden</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
 

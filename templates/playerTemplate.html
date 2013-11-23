@@ -26,3 +26,39 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="drawingModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Je hebt een verkeerde letter gekozen</h1>
+      </div>
+      <div class="modal-body">
+      	<h3>De andere speler tekent nu voor jou een onderdeel van een galg poppetje</h3>
+       <div drawing-canvas writable="false"></div>
+      </div>
+      <div class="modal-footer">
+      		<button type="button" class="btn btn-primary"  data-dismiss="modal" ng-disabled="wait_for_drawing">Speel verder</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">De host van dit spel heeft de sessie verlaten!</h4>
+      </div>
+      <!-- <div class="modal-body"> -->
+      	<!-- <h3>De andere speler tekent nu voor jou een onderdeel van een galg poppetje</h3> -->
+       <!-- <div drawing-canvas writable="false"></div> -->
+      <!-- </div> -->
+      <!-- <div class="modal-footer"> -->
+      		<!-- <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-disabled="wait_for_drawing">Speel verder</button> -->
+      <!-- </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
