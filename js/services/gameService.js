@@ -23,9 +23,9 @@ app.factory("gameService", function($rootScope, game, gamePad, angularFire) {
 			angularFire(sessionRef.child("wait_for_drawing"), $scope, 'wait_for_drawing');
 			angularFire(sessionRef.child("drawing_data_url"), $scope, 'drawing_data_url');
 		},
-		checkGuessedGameCharacters : function(game_characters, padButtonCharacter) {
+		checkGuessedGameCharacters : function(game_characters, character) {
 			return _.where(game_characters, {
-				character: padButtonCharacter.character.toLowerCase()
+				character: character.toLowerCase()
 			});
 		},
 		setGameCharactersToGuessed: function(matched_game_characters) {
@@ -49,6 +49,13 @@ app.factory("gameService", function($rootScope, game, gamePad, angularFire) {
 		        canvas.getContext("2d").drawImage(img, 0, 0);
 		    };
 		    img.src = data;
+		},
+		clearDrawingCanvas: function(canvas) {
+			var ctx = canvas.getContext('2d');
+			ctx.save();
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.restore();
 		}	
 	}
 });

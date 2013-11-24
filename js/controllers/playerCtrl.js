@@ -30,10 +30,13 @@ app.controller('playerCtrl', function($scope, $route, gameService) {
 	});
 
 	$scope.$watch("drawing_data_url", function(newValue, oldValue) {
-		if(newValue != oldValue)
+		if(newValue != null)
 		{
-			gameService.drawDataURLToCanvas($scope.drawing_data_url, jQuery('#drawingCanvas').get(0)); 
-			$scope.ready_to_guess = true;
+			gameService.drawDataURLToCanvas(newValue, jQuery('#drawingCanvas').get(0)); 
+		}
+		else
+		{
+			gameService.clearDrawingCanvas(jQuery('#drawingCanvas').get(0));
 		}
 	});
 	

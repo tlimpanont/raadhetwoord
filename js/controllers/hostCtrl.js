@@ -20,6 +20,7 @@ app.controller('hostCtrl', function($scope, $timeout, game, gamePad, gameService
 
 	$scope.resetGame = function() {
 		$scope.session.session_id =  game.hostSessionId;
+		$scope.session.drawing_data_url = null;
 		$scope.session.wait_for_approval_character = null;
 		$scope.session.allowed_characters = game.allowed_characters;
 		$scope.session.ready_to_guess = false;
@@ -28,12 +29,18 @@ app.controller('hostCtrl', function($scope, $timeout, game, gamePad, gameService
 		$scope.session.game_completed = false;
 		$scope.session.score = 0;
 		$scope.session.guess_count = 0;
-		$scope.user_input = ""; 
+		$scope.user_input = "";
 	}
 
 	$scope.startGame = function(event) {
 		event.currentTarget.blur();
 		$scope.session.ready_to_guess = true;
+		$scope.clearDrawingCanvas();
+	}
+
+	$scope.clearDrawingCanvas = function() {
+		jQuery('#drawingCanvas').sketch().actions = [];   
+		gameService.clearDrawingCanvas(jQuery('#drawingCanvas').get(0));	
 	}
 	
 	$scope.play_url = $location.$$absUrl.replace(/host$/g, "speel/"+game.hostSessionId);

@@ -20,17 +20,11 @@ app.controller("playerCharactersPadCtrl", function($scope, game, gameService, ga
 			$scope.$apply();
 		}
 	}
-
-	$scope.letHostCheckCharacter = function(character) {
-		$scope.wait_for_approval_character = character;
-	}
 	
 	$scope.guess = function(padButtonCharacter) {
 		$scope.guess_count++;		
-	
-		// $scope.letHostCheckCharacter(padButtonCharacter.character);
 
-		var guessed_game_characters = gameService.checkGuessedGameCharacters($scope.game_characters, padButtonCharacter);
+		var guessed_game_characters = gameService.checkGuessedGameCharacters($scope.game_characters, padButtonCharacter.character);
 			
 		if(guessed_game_characters.length > 0) 
 		{
