@@ -17,15 +17,24 @@ app.controller('playerCtrl', function($scope, $route, gameService) {
 		 jQuery("#drawingModal").modal("show");
 	}
 
-	$scope.$watch("session_id", function(newValue, oldValue) {
-		// if(oldValue == undefined && newValue == null)
-		// 	jQuery("#notificationModal").modal("show");
-	});
-
+	$scope.closeModal = function() {	
+		// remove modal after the host completed the drawing
+		setTimeout(function() {
+			$scope.$apply(function() {
+				jQuery("#drawingModal").modal("hide");		
+			});
+		}, 1000); // a little bit of delay for user to have time to see the drawing
+	}
+	
 	$scope.$watch("wait_for_drawing", function(newValue, oldValue) {
 		if(newValue != undefined && !$scope.game_completed)
 		{
 			$scope.openModal();
+		}
+		
+		if(newValue == false)
+		{
+			$scope.closeModal();
 		}
 	});
 
